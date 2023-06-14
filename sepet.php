@@ -1,7 +1,8 @@
 <?php
-require 'inc/db.php';
-?>
 
+include("inc/db.php");
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,97 +79,102 @@ require 'inc/db.php';
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="index.php" class="nav-item nav-link ">ANA SAYFA</a>
-                <a href="hakkimizda.html" class="nav-item nav-link ">HAKKIMIZDA</a>
-                <a href="hizmetlerimiz.php" class="nav-item nav-link ">HİZMETLERİMİZ</a>
-                <a href="iletisim.php" class="nav-item nav-link active">İLETİŞİM</a>
+                <a href="index.php" class="nav-item nav-link active">ANA SAYFA</a>
+                <a href="hakkimizda.html" class="nav-item nav-link">HAKKIMIZDA</a>
+                <a href="hizmetlerimiz.php" class="nav-item nav-link">HİZMETLERİMİZ</a>
+                <a href="iletisim.php" class="nav-item nav-link">İLETİŞİM</a>
                 <a href="giris.php" class="nav-item nav-link nav-contact text-white px-5 ms-lg-5" style="background-color: #B74EC8;">GİRİŞ YAP / KAYIT OL<i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     </nav>
     <!-- Navbar -->
 
+    <!-- Alışveriş Sepeti -->
+    <br>
+    <div class="container">
+        <h2 class="text-center">Sepetinizde<strong style="color: #7C1899;"> 2</strong> adet ürün bulunmaktadır.</h2>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="tablo">
+            <div class="col-md-12 ">
+                <table class="table table-hover table-bordered table-striped">
 
-    <!-- Contact Start -->
-    <div class="container-fluid pt-5">
-        <div class="container">
-            <div class="border-start border-5 ps-5 mb-5" style="max-width: 600px;">
-                <h6 class="text-uppercase" style="color: #B74EC8;">İLETİŞİM</h6>
-                <h1 class="display-5 text-uppercase mb-0">BİZE HER ZAMAN ULAŞABİLİRSİNİZ</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-7">
-                    <form method="post" action="iletisim.php">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <input type="text" name="txtad" class="form-control bg-light border-0 px-4" placeholder="Adınız" style="height: 55px;">
-                            </div>
-                            <div class="col-12">
-                                <input type="email" name="txtemail" class="form-control bg-light border-0 px-4" placeholder="E-mailiniz" style="height: 55px;">
-                            </div>
-                            <div class="col-12">
-                                <input type="text" name="txtkonu" class="form-control bg-light border-0 px-4" placeholder="Konu" style="height: 55px;">
-                            </div>
-                            <div class="col-12">
-                                <textarea class="form-control bg-light border-0 px-4 py-3" name="txtmesaj" rows="8" placeholder="Mesajınız"></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn  w-100 py-3" type="submit" style="background-color: #B74EC8; color: #fff;">GÖNDER</button>
-                            </div>
-                        </div>
-                    </form>
-                    <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
-                    <?php
-                    if ($_POST) {
-                        $sorgu = $baglanti->prepare(query: "insert into iletisim SET ad=:ad, email=:email, konu=:konu, mesaj=:mesaj");
-                        $ekle = $sorgu->execute(
-                            [
-                                'ad' => htmlspecialchars($_POST["txtad"]),
-                                'email' => htmlspecialchars($_POST["txtemail"]),
-                                'konu' => htmlspecialchars($_POST["txtkonu"]),
-                                'mesaj' => htmlspecialchars($_POST["txtmesaj"]),
-                            ]
-                        );
+                    <thead>
+                        <th class="text-center" style="color: #7C1899;">Ürün Resmi</th>
+                        <th class="text-center" style="color: #7C1899;">Ürün Adı</th>
+                        <th class="text-center" style="color: #7C1899;">Ürün Fiyatı</th>
+                        <th class="text-center" style="color: #7C1899;">Ürün Adeti</th>
+                        <th class="text-center" style="color: #7C1899;">Toplam</th>
+                        <th class="text-center" style="color: #7C1899;">Sepetten Çıkar</th>
+                    </thead>
 
-                        if ($ekle) {
+                    <tbody>
+                        <tr>
+                            <td class="text-center" width="180"><img src="img/balıklıyetiskinkopek.jfif" width="50"></td>
+                            <td class="text-center">Biftekli Büyük Irk Yavru Köpek Maması</td>
+                            <td class="text-center"><strong>750 TL</strong></td>
+                            <td class="text-center" width="200">
+                                <a href="#" class="btn btn-xs btn-success">
+                                    <span class="">+</span>
+                                </a>
+                                <input type="text" value="1" class="item-count-input" size="5">
+                                <a href="#" class="btn btn-xs btn-danger">
+                                    <span class="">-</span>
+                                </a>
+                            </td>
+                            <td class="text-center"><strong>750 TL</strong></td>
+                            <td class="text-center" width="200"><a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span>Sepetten Çıkar</a></td>
 
-                            echo "<script> Swal.fire('Başarılı', 'Mesajınız bize ulaştı', 'success') </script>";
-                        }
-                    }
-                    ?>
+                            
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td class="text-center" width="180"><img src="img/tavukluyavrukedi.jfif" width="50"></td>
+                            <td class="text-center">Tavuklu Yavru Kedi Maması</td>
+                            <td class="text-center"><strong>550 TL</strong></td>
+                            <td class="text-center" width="200">
+                                <a href="#" class="btn btn-xs btn-success">
+                                    <span class="">+</span>
+                                </a>
+                                <input type="text" value="1" class="item-count-input" size="5">
+                                <a href="#" class="btn btn-xs btn-danger">
+                                    <span class="">-</span>
+                                </a>
+                            </td>
+                            <td class="text-center"><strong>550 TL</strong></td>
+                            <td class="text-center" width="200"><a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span>Sepetten Çıkar</a></td>
 
-                </div>
-                <div class="col-lg-5">
-                    <div class="bg-light mb-5 p-5">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-geo-alt fs-1 me-3" style="color: #B74EC8;"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Adres</h6>
-                                <span>Balıkesir/Bandırma</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-envelope-open fs-1  me-3" style="color: #B74EC8;"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Email</h6>
-                                <span>streetpaws@gmail.com</span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="bi bi-phone-vibrate fs-1 me-3" style="color: #B74EC8;"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Telefon</h6>
-                                <span>0555 555 55 55</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <th colspan="3" class="text-right">
+                            <span style="font-size: 18px;"> Toplam Ürün: <span style="color: #7C1899;">2 Adet</span> </span>
+                        </th>
+                        <th colspan="3" class="text-right">
+                            <span style="font-size: 18px;"> Toplam Tutar: <span style="color: #7C1899;">1300 TL</span> </span>
+                        </th>
+
+
+                    </tfoot>
+
+
+
+
+                </table>
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
-    <!-- Contact End -->
-
-
 
     <!-- Footer -->
     <div class="container-fluid bg-light mt-5 py-5">

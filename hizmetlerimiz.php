@@ -1,8 +1,8 @@
 <?php
-require 'inc/db.php';
+
+include("inc/db.php");
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,8 +80,8 @@ require 'inc/db.php';
             <div class="navbar-nav ms-auto py-0">
                 <a href="index.php" class="nav-item nav-link ">ANA SAYFA</a>
                 <a href="hakkimizda.html" class="nav-item nav-link ">HAKKIMIZDA</a>
-                <a href="hizmetlerimiz.php" class="nav-item nav-link ">HİZMETLERİMİZ</a>
-                <a href="iletisim.php" class="nav-item nav-link active">İLETİŞİM</a>
+                <a href="hizmetlerimiz.php" class="nav-item nav-link active">HİZMETLERİMİZ</a>
+                <a href="iletisim.php" class="nav-item nav-link">İLETİŞİM</a>
                 <a href="giris.php" class="nav-item nav-link nav-contact text-white px-5 ms-lg-5" style="background-color: #B74EC8;">GİRİŞ YAP / KAYIT OL<i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -89,85 +89,117 @@ require 'inc/db.php';
     <!-- Navbar -->
 
 
-    <!-- Contact Start -->
-    <div class="container-fluid pt-5">
+    <!-- Hizmetler -->
+    <div class="container-fluid py-5">
         <div class="container">
-            <div class="border-start border-5 ps-5 mb-5" style="max-width: 600px;">
-                <h6 class="text-uppercase" style="color: #B74EC8;">İLETİŞİM</h6>
-                <h1 class="display-5 text-uppercase mb-0">BİZE HER ZAMAN ULAŞABİLİRSİNİZ</h1>
+            <div class="border-start border-5 ps-5 mb-5" style="max-width: 600px; color: #B74EC8;">
+                <h6 class="text-uppercase" style="color: #B74EC8;">HİZMETLERİMİZ</h6>
+                <h1 class="display-5 text-uppercase mb-0">ONLAR İÇİN EN İYİSİNİ YAPIYORUZ</h1>
             </div>
             <div class="row g-5">
-                <div class="col-lg-7">
-                    <form method="post" action="iletisim.php">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <input type="text" name="txtad" class="form-control bg-light border-0 px-4" placeholder="Adınız" style="height: 55px;">
-                            </div>
-                            <div class="col-12">
-                                <input type="email" name="txtemail" class="form-control bg-light border-0 px-4" placeholder="E-mailiniz" style="height: 55px;">
-                            </div>
-                            <div class="col-12">
-                                <input type="text" name="txtkonu" class="form-control bg-light border-0 px-4" placeholder="Konu" style="height: 55px;">
-                            </div>
-                            <div class="col-12">
-                                <textarea class="form-control bg-light border-0 px-4 py-3" name="txtmesaj" rows="8" placeholder="Mesajınız"></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn  w-100 py-3" type="submit" style="background-color: #B74EC8; color: #fff;">GÖNDER</button>
-                            </div>
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4">
+                        <i class="flaticon-house display-1 me-4" style="color: #B74EC8;"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">SAHİPLENDİRME</h5>
+                            <p>Sahiplendirme ilanları için açmış olduğumuz yan instagram hesabımızdan ailenize bir yeni üye ekleyebilirsiniz. </p>
+                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
                         </div>
-                    </form>
-                    <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
-                    <?php
-                    if ($_POST) {
-                        $sorgu = $baglanti->prepare(query: "insert into iletisim SET ad=:ad, email=:email, konu=:konu, mesaj=:mesaj");
-                        $ekle = $sorgu->execute(
-                            [
-                                'ad' => htmlspecialchars($_POST["txtad"]),
-                                'email' => htmlspecialchars($_POST["txtemail"]),
-                                'konu' => htmlspecialchars($_POST["txtkonu"]),
-                                'mesaj' => htmlspecialchars($_POST["txtmesaj"]),
-                            ]
-                        );
-
-                        if ($ekle) {
-
-                            echo "<script> Swal.fire('Başarılı', 'Mesajınız bize ulaştı', 'success') </script>";
-                        }
-                    }
-                    ?>
-
+                    </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="bg-light mb-5 p-5">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-geo-alt fs-1 me-3" style="color: #B74EC8;"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Adres</h6>
-                                <span>Balıkesir/Bandırma</span>
-                            </div>
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4">
+                        <i class="flaticon-food display-1 me-4" style="color: #B74EC8;"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">BESLEME</h5>
+                            <p>Düzenli aralıklarla beslemeler yapıyoruz. Bulunduğunuz bölgede beslemeye ihtiyaç varsa bizimle iletişime geçebilirsiniz</p>
+                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
                         </div>
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-envelope-open fs-1  me-3" style="color: #B74EC8;"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Email</h6>
-                                <span>streetpaws@gmail.com</span>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4">
+                        <i class="flaticon-grooming display-1 me-4" style="color: #B74EC8;"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">KISIRLAŞTIRMA</h5>
+                            <p>Bünyemizde bulunan veteriner hekimler tarafından düzenli olarak kısırlaştırmalarımızı yapıyoruz.</p>
+                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
                         </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="bi bi-phone-vibrate fs-1 me-3" style="color: #B74EC8;"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Telefon</h6>
-                                <span>0555 555 55 55</span>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4">
+                        <i class="flaticon-vaccine display-1 me-4" style="color: #B74EC8;"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">TEDAVİ</h5>
+                            <p>Bünyemizdeki veterinerlerimiz ve gönüllü veteriner hekimler tarafından onlarca can tedavi oluyor, sağlığına kavuşuyor.</p>
+                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- Hizmetler-->
 
+    <!-- Ürünler -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 ps-5 mb-5" style="max-width: 600px; color: #B74EC8;">
+                <h6 class="text-uppercase" style="color: #B74EC8;">ÜRÜNLERİMİZ</h6>
+                <h1 class="display-5 text-uppercase mb-0">MAMA ALIN, SİZDE KATKI SAĞLAYIN</h1>
+            </div>
+
+            <div class="owl-carousel product-carousel">
+                <?php
+                $sorgu8 = $baglanti->prepare(query: "select * from ürünler WHERE aktif=1 ORDER BY sira");
+                $sorgu8->execute();
+                $index = 0;
+                while ($sonuc8 = $sorgu8->fetch()) {
+                    $index++;
+                ?>
+                    <div class="pb-5">
+                        <div class="product-item position-relative bg-light d-flex flex-column text-center <?php echo $index == 1 ? "active" : ""; ?>">
+                            <img class="img-fluid mb-4" src="img/<?= $sonuc8["foto"] ?>" style="height: 200px;" alt="">
+                            <h6 class="text-uppercase"><?= $sonuc8["baslik"] ?></h6>
+                            <h5 class=" mb-0" style="color: #B74EC8;"><?= $sonuc8["fiyat"] ?></h5>
+                            <div class="btn-action d-flex justify-content-center">
+                                <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="<?= $sonuc8["link"] ?>"><i class="">SİPARİŞ VER</i></a>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <!-- Ürünler -->
+
+    <!-- Video-->
+    <div class="container">
+        <div class="border-start border-5 ps-5 mb-5" style=" color: #B74EC8;">
+            <h6 class="text-uppercase" style="color: #B74EC8;">REKLAMLARIMIZ</h6>
+            <h1 class="display-5 text-uppercase mb-0">REKLAM İZLEYEREK BİZE DESTEK OLABİLİRSİNİZ</h1>
+        </div>
+    </div>
+    <div class="container py-5 mb-5 hero-header">
+        <div class="container py-5">
+
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                        <div class="duzen">
+                            <a href="https://www.youtube.com/watch?v=WMnW4vRKiQs&ab_channel=LiderPetFood" type="button" class="btn-play">
+                                <span></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video -->
 
 
     <!-- Footer -->

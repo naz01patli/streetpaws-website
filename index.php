@@ -1,3 +1,9 @@
+<?php
+
+include("inc/db.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +46,7 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="index.html" class="navbar-brand ms-lg-5">
+        <a href="index.php" class="navbar-brand ms-lg-5">
             <h1 class="m-0 text-uppercase text-dark"><img src="img/logo3.png" width="250px" height="100px" /> </h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -48,9 +54,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="index.html" class="nav-item nav-link active">ANA SAYFA</a>
+                <a href="index.php" class="nav-item nav-link active">ANA SAYFA</a>
                 <a href="hakkimizda.html" class="nav-item nav-link">HAKKIMIZDA</a>
-                <a href="hizmetlerimiz.html" class="nav-item nav-link">HİZMETLERİMİZ</a>
+                <a href="hizmetlerimiz.php" class="nav-item nav-link">HİZMETLERİMİZ</a>
                 <a href="iletisim.php" class="nav-item nav-link">İLETİŞİM</a>
                 <a href="giris.php" class="nav-item nav-link nav-contact text-white px-5 ms-lg-5" style="background-color: #B74EC8;">GİRİŞ YAP / KAYIT OL<i class="bi bi-arrow-right"></i></a>
             </div>
@@ -198,78 +204,39 @@
     <!-- Hizmetler-->
 
 
-    <!-- Ürünler -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="border-start border-5 ps-5 mb-5" style="max-width: 600px; color: #B74EC8;">
-                <h6 class="text-uppercase" style="color: #B74EC8;">ÜRÜNLERİMİZ</h6>
-                <h1 class="display-5 text-uppercase mb-0">MAMA ALIN, SİZDE KATKI SAĞLAYIN</h1>
-            </div>
-            <div class="owl-carousel product-carousel">
+   <!-- Ürünler -->
+   <div class="container-fluid py-5">
+    <div class="container">
+        <div class="border-start border-5 ps-5 mb-5" style="max-width: 600px; color: #B74EC8;">
+            <h6 class="text-uppercase" style="color: #B74EC8;">ÜRÜNLERİMİZ</h6>
+            <h1 class="display-5 text-uppercase mb-0">MAMA ALIN, SİZDE KATKI SAĞLAYIN</h1>
+        </div>
+
+        <div class="owl-carousel product-carousel">
+            <?php
+            $sorgu = $baglanti->prepare(query: "select * from ürünler WHERE aktif=1 ORDER BY sira");
+            $sorgu->execute();
+            $index = 0;
+            while ($sonuc = $sorgu->fetch()) {
+                $index++;
+            ?>
                 <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="img/buyukkırkbiftekyavrukopek.jfif"  style="height: 200px;" alt="">
-                        <h6 class="text-uppercase">Büyük Irk Biftekli Yavru Köpek Maması</h6>
-                        <h5 class=" mb-0" style="color: #B74EC8;">500 TL</h5>
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center <?php echo $index == 1 ? "active" : ""; ?>">
+                        <img class="img-fluid mb-4" src="img/<?= $sonuc["foto"] ?>" style="height: 200px;" alt="">
+                        <h6 class="text-uppercase"><?= $sonuc["baslik"] ?></h6>
+                        <h5 class=" mb-0" style="color: #B74EC8;"><?= $sonuc["fiyat"] ?></h5>
                         <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="iletisim.html"><i class="">SİPARİŞ VER</i></a>
-                       </div>
-                    </div>
-                </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="img/tavukluyavrukedi.jfif" style="height: 200px;" alt="">
-                        <h6 class="text-uppercase">Tavuklu Yavru Kedi Maması</h6>
-                        <h5 class="mb-0"  style="color: #B74EC8;">550 TL</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="iletisim.html"><i class="">SİPARİŞ VER</i></a>
+                            <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="<?= $sonuc["link"] ?>"><i class="">SİPARİŞ VER</i></a>
                         </div>
                     </div>
                 </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="img/balıklıyetiskinkopek.jfif"  style="height: 200px;" alt="">
-                        <h6 class="text-uppercase">Balıklı Yetişkin Köpek Maması</h6>
-                        <h5 class="mb-0"  style="color: #B74EC8;">775 TL</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="iletisim.html"><i class="">SİPARİŞ VER</i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="img/tavukluyetiskinkedi.jfif"  style="height: 200px;" alt="">
-                        <h6 class="text-uppercase">Tavuklu Yetişkin Kedi Maması</h6>
-                        <h5 class="mb-0"  style="color: #B74EC8;">740 TL</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="iletisim.html"><i class="">SİPARİŞ VER</i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="img/flippetızgaralıkap.jfif" style="height: 200px;" alt="">
-                        <h6 class="text-uppercase">Flip Pet Izgaralı Kedi Kum Kabı</h6>
-                        <h5 class="mb-0" style="color: #B74EC8;">200 TL</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="iletisim.html"><i class="">SİPARİŞ VER</i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="img/reddingotasma.jfif" style="height: 200px;" alt="">
-                        <h6 class="text-uppercase">Red Ringo Köpek Tasması</h6>
-                        <h5 class="mb-0" style="color: #B74EC8;">100 TL</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="iletisim.html"><i class="">SİPARİŞ VER</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
-    <!-- Ürünler -->
+</div>
+<!-- Ürünler -->
 
     <!-- Ziyaretçi Yorumları -->
     <div class="container-fluid bg-testimonial py-5" style="margin: 45px 0;">

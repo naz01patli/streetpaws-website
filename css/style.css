@@ -596,3 +596,17 @@ html, body{
     padding-left: 250px;
     padding-top: 190px;
 }
+
+
+td{
+    vertical-align: middle!important;
+}
+
+.tablo {
+    padding-left: 130px;
+    padding-right: 130px;
+}
+
+.item-count-input{
+    text-align: center;
+}
