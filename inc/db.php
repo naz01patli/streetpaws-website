@@ -16,3 +16,4 @@ catch(PDOException $e)
     echo "Bağlantı hatası: " . $e->getMessage();
     }
 ?>
+

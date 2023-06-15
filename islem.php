@@ -33,7 +33,7 @@ if (isset($_POST['kayit'])) {
             echo '<div class="alert alert-success" role="alert">
         Kayıt işleminiz başarıyla gerçekleşti,yönlendiriliyorsunuz!
       </div>';
-            header('Refresh:2; index.html');
+            header('Refresh:2; index.php');
         } else {
             echo '<div class="alert alert-danger" role="alert">
         Kayıt işleminiz sırasında hata oluştu, tekrar deneyin!
@@ -67,10 +67,10 @@ if (isset($_POST['giris'])) {
             echo '<div class="alert alert-success" role="alert">
             Giriş işleminiz başarıyla gerçekleşti, yönlendiriliyorsunuz!
           </div>';
-            header('Refresh:2; index.html');
+            header('Refresh:2; index.php');
         } else {
             echo '<div class="alert alert-danger" role="alert">
-            Bir hata oluştu, tekrar deneyin!
+            Kullanıcı adı veya şifre hatalı, tekrar deneyin!
           </div>';
         }
     }

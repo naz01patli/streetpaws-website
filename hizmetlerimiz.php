@@ -1,7 +1,7 @@
 <?php
 
 include("inc/db.php");
-
+include("urundb.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,6 +68,8 @@ include("inc/db.php");
 
 <body>
 
+
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
         <a href="index.php" class="navbar-brand ms-lg-5">
@@ -103,7 +105,7 @@ include("inc/db.php");
                         <div>
                             <h5 class="text-uppercase mb-3">SAHİPLENDİRME</h5>
                             <p>Sahiplendirme ilanları için açmış olduğumuz yan instagram hesabımızdan ailenize bir yeni üye ekleyebilirsiniz. </p>
-                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
+                            
                         </div>
                     </div>
                 </div>
@@ -113,7 +115,7 @@ include("inc/db.php");
                         <div>
                             <h5 class="text-uppercase mb-3">BESLEME</h5>
                             <p>Düzenli aralıklarla beslemeler yapıyoruz. Bulunduğunuz bölgede beslemeye ihtiyaç varsa bizimle iletişime geçebilirsiniz</p>
-                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
+                           
                         </div>
                     </div>
                 </div>
@@ -123,7 +125,7 @@ include("inc/db.php");
                         <div>
                             <h5 class="text-uppercase mb-3">KISIRLAŞTIRMA</h5>
                             <p>Bünyemizde bulunan veteriner hekimler tarafından düzenli olarak kısırlaştırmalarımızı yapıyoruz.</p>
-                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
+                            
                         </div>
                     </div>
                 </div>
@@ -133,7 +135,7 @@ include("inc/db.php");
                         <div>
                             <h5 class="text-uppercase mb-3">TEDAVİ</h5>
                             <p>Bünyemizdeki veterinerlerimiz ve gönüllü veteriner hekimler tarafından onlarca can tedavi oluyor, sağlığına kavuşuyor.</p>
-                            <a class="text-uppercase" style="color: #B74EC8;" href="hizmetlerimiz.html">Read More<i class="bi bi-chevron-right"></i></a>
+                            
                         </div>
                     </div>
                 </div>
@@ -146,6 +148,7 @@ include("inc/db.php");
     <div class="container-fluid py-5">
         <div class="container">
             <div class="border-start border-5 ps-5 mb-5" style="max-width: 600px; color: #B74EC8;">
+                <a name="urun"></a>
                 <h6 class="text-uppercase" style="color: #B74EC8;">ÜRÜNLERİMİZ</h6>
                 <h1 class="display-5 text-uppercase mb-0">MAMA ALIN, SİZDE KATKI SAĞLAYIN</h1>
             </div>
@@ -162,9 +165,9 @@ include("inc/db.php");
                         <div class="product-item position-relative bg-light d-flex flex-column text-center <?php echo $index == 1 ? "active" : ""; ?>">
                             <img class="img-fluid mb-4" src="img/<?= $sonuc8["foto"] ?>" style="height: 200px;" alt="">
                             <h6 class="text-uppercase"><?= $sonuc8["baslik"] ?></h6>
-                            <h5 class=" mb-0" style="color: #B74EC8;"><?= $sonuc8["fiyat"] ?></h5>
+                            <h5 class=" mb-0" style="color: #B74EC8;"><?= $sonuc8["fiyat"] ?> TL</h5>
                             <div class="btn-action d-flex justify-content-center">
-                                <a class="btn btn-primary py-2 px-3" style="background-color: #B74EC8;" href="<?= $sonuc8["link"] ?>"><i class="">SİPARİŞ VER</i></a>
+                                <a href="<?= $sonuc8["link"] ?>" product-id="<?= $sonuc8["id"] ?>" class="btn btn-primary py-2 px-3 addToCartBtn" style="background-color: #B74EC8;" role="button" ><i class="">SİPARİŞ VER</i></a>
                             </div>
                         </div>
                     </div>
@@ -222,9 +225,9 @@ include("inc/db.php");
                 <div class="col-lg-4 col-md-6">
                     <h5 class="text-uppercase border-start border-5 ps-3 mb-4" style="color: #B74EC8;">SAYFALAR</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-body mb-2" href="index.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
+                        <a class="text-body mb-2" href="index.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
                         <a class="text-body mb-2" href="hakkimizda.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hakkımızda</a>
-                        <a class="text-body mb-2" href="hizmetlerimiz.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
+                        <a class="text-body mb-2" href="hizmetlerimiz.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
                         <a class="text-body" href="iletisim.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>İletişim</a>
                     </div>
                 </div>
@@ -246,3 +249,4 @@ include("inc/db.php");
 </body>
 
 </html>
+<script src="js/sepetekle.js"></script>

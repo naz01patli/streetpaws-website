@@ -63,6 +63,8 @@ include("inc/db.php");
     </nav>
     <!-- Navbar -->
 
+
+    <!-- Giriş Kayıt Form -->
     <div class="body">
       <div class="layer">
           <div class="form">
@@ -105,6 +107,8 @@ function show_login(){
     $(".login-form").fadeIn();
 }
 </script>
+<!-- Giriş Kayıt Form -->
+
 
 <!-- Footer -->
 <div class="container-fluid bg-light mt-5 py-5">
@@ -124,9 +128,9 @@ function show_login(){
             <div class="col-lg-4 col-md-6">
                 <h5 class="text-uppercase border-start border-5 ps-3 mb-4" style="color: #B74EC8;">SAYFALAR</h5>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-body mb-2" href="index.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
+                    <a class="text-body mb-2" href="index.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
                     <a class="text-body mb-2" href="hakkimizda.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hakkımızda</a>
-                    <a class="text-body mb-2" href="hizmetlerimiz.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
+                    <a class="text-body mb-2" href="hizmetlerimiz.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
                     <a class="text-body" href="iletisim.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>İletişim</a>
                 </div>
             </div>

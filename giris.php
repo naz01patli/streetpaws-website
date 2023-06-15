@@ -76,7 +76,7 @@ include("inc/db.php");
                       </form>
                   </div>
                   <br>
-                 <a href="kayit.php"><button type="button" id="showCreateBtn" class="togglebtn" style="color: #7C1899;" onclick="show_create()">Hesap Oluşturun.</button></a>
+                  Hesabınız yok mu ?<a href="kayit.php"><button type="button" id="showCreateBtn" class="togglebtn" style="color: #7C1899;" onclick="show_create()">Hesap Oluşturun.</button></a>
               </div>
           </div>
       </div>
@@ -111,9 +111,9 @@ function show_login(){
             <div class="col-lg-4 col-md-6">
                 <h5 class="text-uppercase border-start border-5 ps-3 mb-4" style="color: #B74EC8;">SAYFALAR</h5>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-body mb-2" href="index.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
+                    <a class="text-body mb-2" href="index.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
                     <a class="text-body mb-2" href="hakkimizda.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hakkımızda</a>
-                    <a class="text-body mb-2" href="hizmetlerimiz.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
+                    <a class="text-body mb-2" href="hizmetlerimiz.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
                     <a class="text-body" href="iletisim.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>İletişim</a>
                 </div>
             </div>

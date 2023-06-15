@@ -68,7 +68,25 @@ include("inc/db.php");
 </head>
 
 <body>
+<?php 
+    session_start();
 
+    if(isset($_SESSION["shoppingCart"])){
+
+        $shoppingCart=$_SESSION["shoppingCart"];
+        $total_count=$shoppingCart["summary"]["total_count"];
+        $total_price=$shoppingCart["summary"]["total_price"];
+
+        $shopping_products=$shoppingCart["ürünler"];
+
+    } else{
+
+        $total_count=0;
+        $total_price=0.0;
+    }
+
+
+    ?>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
         <a href="index.php" class="navbar-brand ms-lg-5">
@@ -92,8 +110,9 @@ include("inc/db.php");
     <!-- Alışveriş Sepeti -->
     <br>
     <div class="container">
-        <h2 class="text-center">Sepetinizde<strong style="color: #7C1899;"> 2</strong> adet ürün bulunmaktadır.</h2>
-    </div>
+       <?php if($total_count>0) { ?> 
+        <h2 class="text-center">Sepetinizde<strong class="toplam" style="color: #7C1899;"> <?php echo $total_count; ?></strong> adet ürün bulunmaktadır.</h2>
+    
     <hr>
     <div class="row">
         <div class="tablo">
@@ -110,51 +129,41 @@ include("inc/db.php");
                     </thead>
 
                     <tbody>
+                       
+                     <?php foreach($shopping_products as $sonuc8) { ?>
+
                         <tr>
-                            <td class="text-center" width="180"><img src="img/balıklıyetiskinkopek.jfif" width="50"></td>
-                            <td class="text-center">Biftekli Büyük Irk Yavru Köpek Maması</td>
-                            <td class="text-center"><strong>750 TL</strong></td>
+                            <td class="text-center" width="180"><img src="img/<?php echo $sonuc8->foto; ?>" width="50"></td>
+                            <td class="text-center"><?php echo $sonuc8->baslik; ?></td>
+                            <td class="text-center"><strong><?php echo $sonuc8->fiyat; ?> TL</strong></td>
                             <td class="text-center" width="200">
-                                <a href="#" class="btn btn-xs btn-success">
+                                <a href="urundb.php?p=incCount&product_id=<?php echo $sonuc8->id; ?>" class="btn btn-xs btn-success">
                                     <span class="">+</span>
                                 </a>
-                                <input type="text" value="1" class="item-count-input" size="5">
-                                <a href="#" class="btn btn-xs btn-danger">
+
+                                <input type="text" value="<?php echo $sonuc8->count; ?>" class="item-count-input" size="5">
+
+                                <a href="urundb.php?p=decCount&product_id=<?php echo $sonuc8->id; ?>" class="btn btn-xs btn-danger">
                                     <span class="">-</span>
                                 </a>
                             </td>
-                            <td class="text-center"><strong>750 TL</strong></td>
-                            <td class="text-center" width="200"><a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span>Sepetten Çıkar</a></td>
+                            <td class="text-center"><strong><?php echo $sonuc8->total_price; ?> TL</strong></td>
+                            <td class="text-center" width="200"><button product-id="<?php echo $sonuc8->id; ?>" class="btn btn-danger btn-sm removeFromCartBtn"><span class="glyphicon glyphicon-remove"></span>Sepetten Çıkar</button></td>
 
                             
                         </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td class="text-center" width="180"><img src="img/tavukluyavrukedi.jfif" width="50"></td>
-                            <td class="text-center">Tavuklu Yavru Kedi Maması</td>
-                            <td class="text-center"><strong>550 TL</strong></td>
-                            <td class="text-center" width="200">
-                                <a href="#" class="btn btn-xs btn-success">
-                                    <span class="">+</span>
-                                </a>
-                                <input type="text" value="1" class="item-count-input" size="5">
-                                <a href="#" class="btn btn-xs btn-danger">
-                                    <span class="">-</span>
-                                </a>
-                            </td>
-                            <td class="text-center"><strong>550 TL</strong></td>
-                            <td class="text-center" width="200"><a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span>Sepetten Çıkar</a></td>
 
-                            
-                        </tr>
+                        <?php } ?>
+
+
                     </tbody>
+                    
                     <tfoot>
                         <th colspan="3" class="text-right">
-                            <span style="font-size: 18px;"> Toplam Ürün: <span style="color: #7C1899;">2 Adet</span> </span>
+                            <span style="font-size: 18px;"> Toplam Ürün: <span style="color: #7C1899;"><?php echo $total_count; ?> adet</span> </span>
                         </th>
                         <th colspan="3" class="text-right">
-                            <span style="font-size: 18px;"> Toplam Tutar: <span style="color: #7C1899;">1300 TL</span> </span>
+                            <span style="font-size: 18px;"> Toplam Tutar: <span style="color: #7C1899;"><?php echo $total_price; ?> TL</span> </span>
                         </th>
 
 
@@ -175,7 +184,15 @@ include("inc/db.php");
             </div>
         </div>
     </div>
+    <?php } else { ?>
 
+     <div class="alert alert-info">
+
+     <strong>Sepetinizde henüz bir ürün bulunmamaktadır. Eklemek için<a href="hizmetlerimiz.php#urun"> tıklayınız.</a></strong>
+
+     </div>
+        <?php } ?>
+    </div>
     <!-- Footer -->
     <div class="container-fluid bg-light mt-5 py-5">
         <div class="container pt-5">
@@ -196,9 +213,9 @@ include("inc/db.php");
                 <div class="col-lg-4 col-md-6">
                     <h5 class="text-uppercase border-start border-5 ps-3 mb-4" style="color: #B74EC8;">SAYFALAR</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-body mb-2" href="index.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
+                        <a class="text-body mb-2" href="index.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Ana Sayfa</a>
                         <a class="text-body mb-2" href="hakkimizda.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hakkımızda</a>
-                        <a class="text-body mb-2" href="hizmetlerimiz.html"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
+                        <a class="text-body mb-2" href="hizmetlerimiz.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>Hizmetlerimiz</a>
                         <a class="text-body" href="iletisim.php"><i class="bi bi-arrow-right me-2" style="color: #B74EC8;"></i>İletişim</a>
                     </div>
                 </div>
@@ -217,6 +234,9 @@ include("inc/db.php");
 
     <!-- Javascript -->
     <script src="js/main.js"></script>
+
 </body>
 
 </html>
+
+<script type="text/javascript" src="js/sepettencikar.js"></script>
